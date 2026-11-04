@@ -1,0 +1,83 @@
+{
+  "name": "@influenzanet/participant-webapp-kit",
+  "version": "0.1.0",
+  "description": "Shared shell for Influenzanet participant web apps: bootstrap, Vite preset and generic page extensions on top of case-web-app-core",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/influenzanet/participant-webapp-kit.git"
+  },
+  "type": "module",
+  "sideEffects": [
+    "*.css",
+    "./dist/runtime.js"
+  ],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./vite": {
+      "types": "./dist/vite/index.d.ts",
+      "import": "./dist/vite/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "clean": "rm -rf dist",
+    "build": "yarn clean && tsc -p tsconfig.json && tsc -p tsconfig.vite.json && node scripts/copy-css.mjs",
+    "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.vite.json --noEmit",
+    "prepublishOnly": "yarn build"
+  },
+  "dependencies": {
+    "@fontsource/open-sans": "^4.5.14",
+    "@fortawesome/fontawesome-free": "^5.15.4",
+    "@iframe-resizer/parent": "^5.5.9"
+  },
+  "peerDependencies": {
+    "@influenzanet/case-web-app-core": ">=2.7.8",
+    "@influenzanet/case-web-ui": ">=1.15.1",
+    "@vitejs/plugin-react": ">=4",
+    "bootstrap": "^5.1.3",
+    "i18next": ">=21",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-i18next": ">=11",
+    "react-redux": "^7.2.8",
+    "vite": ">=5"
+  },
+  "peerDependenciesMeta": {
+    "@vitejs/plugin-react": {
+      "optional": true
+    },
+    "vite": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@influenzanet/case-web-app-core": "2.7.8",
+    "@influenzanet/case-web-ui": "1.15.1",
+    "@types/node": "^22.0.0",
+    "@types/react": "^17.0.2",
+    "@types/react-dom": "^17.0.2",
+    "@vitejs/plugin-react": "^5.0.0",
+    "bootstrap": "^5.1.3",
+    "i18next": "^21.7.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-i18next": "^11.16.8",
+    "react-redux": "^7.2.8",
+    "redux": "^4.2.0",
+    "survey-engine": "1.2.1",
+    "typescript": "^5.6.0",
+    "vite": "^6.4.2"
+  },
+  "resolutions": {
+    "@types/react": "^17.0.2"
+  }
+}
