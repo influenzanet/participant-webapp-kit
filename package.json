@@ -1,7 +1,7 @@
 {
   "name": "@influenzanet/participant-webapp-kit",
   "version": "0.1.0",
-  "description": "Shared shell for Influenzanet participant web apps: bootstrap, Vite preset and generic page extensions on top of case-web-app-core",
+  "description": "Shared code for Influenzanet participant web apps: bootstrap, Vite preset and generic page extensions on top of case-web-app-core",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",

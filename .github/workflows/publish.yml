@@ -1,7 +1,10 @@
 name: Publish package to npm registry
 
-# Tag vX.Y.Z publishes to "latest"; vX.Y.Z-anything (e.g. v0.2.0-staging.1) to "staging".
-# Uses npm trusted publishing (configure it for this repo on npmjs.com).
+# Release: bump "version" in package.json, commit, tag v<version>, push the tag.
+# Version X.Y.Z publishes to "latest"; X.Y.Z-anything (e.g. 0.2.0-staging.1) to "staging".
+# A version already on npm is skipped (npm never accepts the same version twice).
+# Auth: npm trusted publishing (GitHub OIDC, no token), configured on npmjs.com for
+# influenzanet/participant-webapp-kit + publish.yml.
 on:
   workflow_dispatch:
   push:
@@ -22,9 +25,24 @@ jobs:
           node-version: "24"
           registry-url: "https://registry.npmjs.org"
           package-manager-cache: false
-      - run: yarn install --frozen-lockfile
-      - run: yarn typecheck
-      - name: Publish
+      - name: Check version
+        id: version
         run: |
-          if [[ "$GITHUB_REF_NAME" == *-* ]]; then TAG=staging; else TAG=latest; fi
-          npm publish --access public --provenance --tag "$TAG"
+          NAME=$(node -p "require('./package.json').name")
+          VERSION=$(node -p "require('./package.json').version")
+          if [ "$GITHUB_REF_TYPE" = "tag" ] && [ "$GITHUB_REF_NAME" != "v$VERSION" ]; then
+            echo "::error::Tag $GITHUB_REF_NAME does not match package.json version $VERSION (expected tag v$VERSION). Bump the version before tagging."
+            exit 1
+          fi
+          if npm view "$NAME@$VERSION" version >/dev/null 2>&1; then
+            echo "::notice::$NAME@$VERSION is already on npm: nothing to publish. Bump the version in package.json to release."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          fi
+          case "$VERSION" in *-*) echo "dist_tag=staging" >> "$GITHUB_OUTPUT" ;; *) echo "dist_tag=latest" >> "$GITHUB_OUTPUT" ;; esac
+      - if: steps.version.outputs.skip != 'true'
+        run: yarn install --frozen-lockfile
+      - if: steps.version.outputs.skip != 'true'
+        run: yarn typecheck
+      - name: Publish
+        if: steps.version.outputs.skip != 'true'
+        run: npm publish --access public --provenance --tag "${{ steps.version.outputs.dist_tag }}"
