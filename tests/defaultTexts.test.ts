@@ -1,6 +1,6 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import i18next from "i18next";
 
 import { addDefaultTexts, kitTexts, DefaultTexts } from "../src/defaultTexts";
@@ -68,6 +68,13 @@ describe("the kit's default texts", () => {
   it("still let i18n read every country file", async () => {
     const { reads } = await start({ it: { linkresolvers: {} } });
     expect(reads.sort()).toEqual(["en/linkresolvers", "it/linkresolvers"]);
+  });
+
+  it("leave an i18n that is not initialised alone, without throwing", () => {
+    const warn = vi.spyOn(console, "warn").mockImplementation(() => undefined);
+    expect(() => addDefaultTexts(kitDefaults, i18next.createInstance())).not.toThrow();
+    expect(warn).toHaveBeenCalledTimes(1);
+    warn.mockRestore();
   });
 
   it("are not changed by what i18n merges into its copy", async () => {

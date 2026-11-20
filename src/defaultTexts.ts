@@ -1,4 +1,5 @@
-import i18n, { i18n as I18n } from "i18next";
+import type { i18n as I18n } from "i18next";
+import { getI18n } from "react-i18next";
 
 import enLinkResolvers from "./locales/en/linkresolvers.json";
 import itLinkResolvers from "./locales/it/linkresolvers.json";
@@ -21,8 +22,17 @@ export const kitTexts: DefaultTexts = {
  * namespace, or failed to (the country has no file for it). The country's own keys are never
  * replaced. The texts are added while i18n records the load, before the components waiting
  * for the namespace render. Call it right after i18n is initialised.
+ *
+ * By default it uses the i18n instance react-i18next renders with. That is the one
+ * case-web-app-core's initI18n sets up: the core bundles its own copy of i18next, so the app's
+ * `i18next` import is another copy, never initialised. Without an initialised instance it only
+ * warns: the texts are an extra, and must never keep the app from starting.
  */
-export function addDefaultTexts(defaults: DefaultTexts, instance: I18n = i18n): void {
+export function addDefaultTexts(defaults: DefaultTexts, instance: I18n | undefined = getI18n()): void {
+  if (!instance?.store) {
+    console.warn("participant-webapp-kit: i18n is not initialised, the kit's default texts are not added");
+    return;
+  }
   let adding = false;
   const fill = (lng: string, ns: string) => {
     const texts = defaults[lng]?.[ns];

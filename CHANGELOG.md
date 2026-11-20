@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.2
+
+- Fixes broken 0.1.1
+  
 ## 0.1.1
 
 - Default texts: the kit ships the texts of pages every country has
