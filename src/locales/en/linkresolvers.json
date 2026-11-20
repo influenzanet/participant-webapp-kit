@@ -1,0 +1,19 @@
+{
+  "unsubscribe": {
+    "newsletter": {
+      "title": "Unsubscribe from the newsletter",
+      "info": "Confirm to stop receiving the newsletter.",
+      "success": "Done: you will no longer receive the newsletter. You can subscribe again at any time in your account settings."
+    },
+    "weekly": {
+      "title": "Stop the weekly reminder",
+      "info": "Confirm to stop receiving the weekly reminder. You can still fill in the questionnaire whenever you like.",
+      "success": "Done: you will no longer receive the weekly reminder. You can turn it back on at any time in your account settings."
+    },
+    "confirmBtn": "Confirm",
+    "retryBtn": "Try again",
+    "homeBtn": "Go to the home page",
+    "invalidLink": "This link is not valid or has expired. You can change your subscriptions in your account settings after logging in.",
+    "error": "Something went wrong and nothing was changed. Please try again in a few minutes."
+  }
+}

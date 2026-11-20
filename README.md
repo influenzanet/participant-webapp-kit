@@ -56,6 +56,14 @@ export default defineConfig(influenzanetVite({
 Env vars keep the CRA names (`REACT_APP_*`) because case-web-app-core reads them; they're
 available as `process.env.REACT_APP_X` in code and `%REACT_APP_X%` in `index.html`.
 
+## Default texts
+
+Texts of the pages every country has (for now the newsletter and weekly reminder unsubscribe
+pages) ship with the kit, in `src/locales/<language>/<namespace>.json` (`en` and `it`), and are
+added under the country's own locale files when the app starts. A country does not copy them:
+to change one, put the same key in its own `public/assets/locales/<language>/<namespace>.json`,
+which always wins. Other languages fall back to the fallback language for the keys they lack.
+
 ## Extensions
 
 Used from `pages.json` items (case-web-app-core 2.7.x matches on `config.type`):

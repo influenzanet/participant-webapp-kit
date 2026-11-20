@@ -7,6 +7,7 @@ import { LoadingPlaceholder } from "@influenzanet/case-web-ui";
 import "./runtime";
 import { env } from "./env";
 import ParticipantApp, { ParticipantAppProps } from "./ParticipantApp";
+import { addDefaultTexts, kitTexts } from "./defaultTexts";
 
 export interface RenderOptions extends ParticipantAppProps {
   /** Defaults to REACT_APP_FALLBACK_LANGUAGE, then "en". */
@@ -20,8 +21,8 @@ export interface RenderOptions extends ParticipantAppProps {
 }
 
 /**
- * Boots a participant web app: i18n, redux store, Suspense fallback, and the
- * ParticipantApp (AppCore + kit extensions + country extensions).
+ * Boots a participant web app: i18n (with the kit's default texts under the country's), redux
+ * store, Suspense fallback, and the ParticipantApp (AppCore + kit extensions + country extensions).
  */
 export function renderParticipantApp(options: RenderOptions): void {
   const { fallbackLanguage, localeUrl, beforeRender, rootId, ...appProps } = options;
@@ -32,6 +33,7 @@ export function renderParticipantApp(options: RenderOptions): void {
     fallbackLanguage ?? env.fallbackLanguage ?? "en",
     localeUrl ?? `${env.contentUrl ?? "/assets"}/locales`
   );
+  addDefaultTexts(kitTexts);
 
   beforeRender?.();
 

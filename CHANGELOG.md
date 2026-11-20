@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.1
+
+- Default texts: the kit ships the texts of pages every country has
+  (`src/locales/<language>/<namespace>.json`, `en` and `it`) and adds them under the
+  country's locale files at start-up. A country key always wins; a namespace the country has
+  no file for gets the kit's texts.
+- `yarn test` (vitest), also run before publishing.
+
 ## 0.1.0
 
 First version, extracted from the influweb participant web app.

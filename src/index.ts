@@ -5,3 +5,5 @@ export type { ParticipantAppProps, Extension, DateLocale } from "./ParticipantAp
 export { defaultExtensions, IframeEmbed, BlogPosts } from "./extensions";
 export type { IframeEmbedProps } from "./extensions/IframeEmbed";
 export type { BlogPostsProps } from "./extensions/BlogPosts/BlogPosts";
+export { kitTexts, addDefaultTexts } from "./defaultTexts";
+export type { DefaultTexts } from "./defaultTexts";

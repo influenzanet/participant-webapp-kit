@@ -43,6 +43,8 @@ jobs:
         run: yarn install --frozen-lockfile
       - if: steps.version.outputs.skip != 'true'
         run: yarn typecheck
+      - if: steps.version.outputs.skip != 'true'
+        run: yarn test
       - name: Publish
         if: steps.version.outputs.skip != 'true'
         run: npm publish --access public --provenance --tag "${{ steps.version.outputs.dist_tag }}"

@@ -1,0 +1,19 @@
+{
+  "unsubscribe": {
+    "newsletter": {
+      "title": "Disiscriviti dalla newsletter",
+      "info": "Conferma per non ricevere più la newsletter.",
+      "success": "Fatto: non riceverai più la newsletter. Puoi iscriverti di nuovo in qualsiasi momento dalle impostazioni del tuo account."
+    },
+    "weekly": {
+      "title": "Disattiva il promemoria settimanale",
+      "info": "Conferma per non ricevere più il promemoria settimanale. Potrai comunque compilare il questionario quando vuoi.",
+      "success": "Fatto: non riceverai più il promemoria settimanale. Puoi riattivarlo in qualsiasi momento dalle impostazioni del tuo account."
+    },
+    "confirmBtn": "Conferma",
+    "retryBtn": "Riprova",
+    "homeBtn": "Vai alla pagina iniziale",
+    "invalidLink": "Il link non è valido o è scaduto. Puoi modificare le tue iscrizioni dalle impostazioni del tuo account, dopo aver effettuato l'accesso.",
+    "error": "Si è verificato un errore e non è stato modificato nulla. Riprova tra qualche minuto."
+  }
+}
