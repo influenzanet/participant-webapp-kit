@@ -3,6 +3,8 @@ import { getI18n } from "react-i18next";
 
 import enLinkResolvers from "./locales/en/linkresolvers.json";
 import itLinkResolvers from "./locales/it/linkresolvers.json";
+import enTranslation from "./locales/en/translation.json";
+import itTranslation from "./locales/it/translation.json";
 
 /** Texts by language, then namespace: `{ it: { linkresolvers: { ... } } }`. */
 export type DefaultTexts = Record<string, Record<string, object>>;
@@ -13,8 +15,8 @@ export type DefaultTexts = Record<string, Record<string, object>>;
  * putting the same key in its own locale file.
  */
 export const kitTexts: DefaultTexts = {
-  en: { linkresolvers: enLinkResolvers },
-  it: { linkresolvers: itLinkResolvers },
+  en: { linkresolvers: enLinkResolvers, translation: enTranslation },
+  it: { linkresolvers: itLinkResolvers, translation: itTranslation },
 };
 
 /**

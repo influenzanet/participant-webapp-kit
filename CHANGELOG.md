@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.2.0
+
+- `phoneVerificationBanner` extension, registered by default: case-web-app-core's
+  `PhoneVerificationBanner`, which hides itself unless the platform has WhatsApp on. Default
+  texts (`translation` namespace, `en` and `it`).
+- Requires case-web-app-core `>=2.9.15-staging.5`: the first with the WhatsApp features that
+  finds page extensions by `config.config.type` again (2.9.0-staging to 2.9.15-staging.4
+  matched on `config.componentName`, which left the `iframeEmbed` and `blogPosts` items blank).
+
 ## 0.1.2
 
 - Fixes broken 0.1.1

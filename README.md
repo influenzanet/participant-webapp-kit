@@ -7,7 +7,7 @@ gripenet-pt, grippenet-ch).
 |---|---|
 | Bootstrap (i18n, store, Suspense, fonts, icons, Bootstrap JS) | `renderParticipantApp()` |
 | AppCore wrapper (instance override, default language, extensions) | `<ParticipantApp>` |
-| Generic page extensions | `iframeEmbed`, `blogPosts` (registered by default) |
+| Generic page extensions | `iframeEmbed`, `blogPosts`, `phoneVerificationBanner` (registered by default) |
 | Vite config | `@influenzanet/participant-webapp-kit/vite` |
 
 Files that must physically live in each country repo (Dockerfile, nginx, CI, `vite.config.ts`,
@@ -66,7 +66,7 @@ which always wins. Other languages fall back to the fallback language for the ke
 
 ## Extensions
 
-Used from `pages.json` items (case-web-app-core 2.7.x matches on `config.type`):
+Used from `pages.json` items: case-web-app-core finds the extension by the inner `config.type`, and passes the rest of that `config` to it as props:
 
 ```json
 { "itemKey": "results", "config": { "type": "extension",
@@ -88,6 +88,16 @@ Used from `pages.json` items (case-web-app-core 2.7.x matches on `config.type`):
 ### `blogPosts`
 
 Latest posts from a Ghost blog. Props `ghostUrl`, `apiKey`, `blogUrl`, `limit` (3), defaults from `REACT_APP_GHOST_URL` / `REACT_APP_GHOST_CONTENT_API_KEY`. Texts from the page's locale namespace: `<itemKey>.title|readMore|viewAll|error|empty`.
+
+### `phoneVerificationBanner`
+
+case-web-app-core's `PhoneVerificationBanner`: asks a participant with an unverified phone number to verify it (button to `/settings`). It renders nothing unless the platform has WhatsApp on (`/v1/platform-config` of the instance answers `whatsAppEnabled: true`), so it can stay in a country's pages when WhatsApp is off. No props. Texts: `translation` namespace, `phoneVerificationBanner.title|message|button` (kit defaults in `en`, `it`).
+
+```json
+{ "key": "phoneVerificationBanner", "fullWidth": true, "columns": [{ "key": "col", "className": "w-100 p-0",
+  "items": [{ "itemKey": "phoneVerificationBanner",
+    "config": { "type": "extension", "config": { "type": "phoneVerificationBanner" } } }] }] }
+```
 
 A country extension with the same name replaces the kit one, pass `includeDefaultExtensions: false` to register none of them.
 

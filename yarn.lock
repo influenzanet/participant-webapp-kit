@@ -450,11 +450,12 @@
     "@iframe-resizer/core" "5.5.9"
     auto-console-group "1.3.0"
 
-"@influenzanet/case-web-app-core@2.7.8":
-  version "2.7.8"
-  resolved "https://registry.yarnpkg.com/@influenzanet/case-web-app-core/-/case-web-app-core-2.7.8.tgz#ae0e26a893b90cbdb2edb7334f26445541be10cd"
-  integrity sha512-EeRy+ox3iasMZb/8dV1nQdStRn0y9RIFT4ZU5DrfbvFVq6yy/uycvYoiW0dhXj9jL6CZS9/0hoeVrGL6sFpwqA==
+"@influenzanet/case-web-app-core@2.9.15-staging.5":
+  version "2.9.15-staging.5"
+  resolved "https://registry.yarnpkg.com/@influenzanet/case-web-app-core/-/case-web-app-core-2.9.15-staging.5.tgz#2cb2eba232b0719a6b5b8092399c3788c34238ee"
+  integrity sha512-QKk22fwY/hiRt8WzLtEfpQcKY5HLMTHLFhCJaBJqA2OLMOJyWHqfxe7GbBeTqe21+fTdAWBZV8Z1CPZa5pEqYA==
   dependencies:
+    libphonenumber-js "^1.13.15"
     react-bootstrap-icons "^1.10.3"
 
 "@influenzanet/case-web-ui@1.15.1":
@@ -1167,6 +1168,11 @@ json5@^2.2.3:
   version "2.2.3"
   resolved "https://registry.yarnpkg.com/json5/-/json5-2.2.3.tgz#78cd6f1a19bdc12b73db5ad0c61efd66c1e29283"
   integrity sha512-XmOWe7eyHYH14cLdVPoyg+GOH3rYX++KpzrylJwSW98t3Nk+U8XOl8FWKOgwtzdb8lXGf6zYwDUzeHMWfxasyg==
+
+libphonenumber-js@^1.13.15:
+  version "1.13.17"
+  resolved "https://registry.yarnpkg.com/libphonenumber-js/-/libphonenumber-js-1.13.17.tgz#d92bb4427763bc34b94ea2a855c19b2ba4bbb4f2"
+  integrity sha512-V92dxRHhYTsHF5B6IjR8rtKW6qL7xKuERPFFqZt7XQl8A+NikbwEzjhxGpM+R6JnWjaL7/wokWSdTG/eyYAscQ==
 
 loose-envify@^1.1.0, loose-envify@^1.4.0:
   version "1.4.0"

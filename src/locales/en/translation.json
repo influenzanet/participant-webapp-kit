@@ -1,0 +1,7 @@
+{
+  "phoneVerificationBanner": {
+    "title": "Warning",
+    "message": "Your phone number has not been verified yet.",
+    "button": "Verify now"
+  }
+}
